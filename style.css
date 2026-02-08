@@ -273,6 +273,10 @@ header {
     border: 1px solid transparent;
 }
 
+.habit-item:last-child {
+    margin-bottom: 0;
+}
+
 .habit-item:hover {
     background: white;
     box-shadow: var(--shadow-sm);

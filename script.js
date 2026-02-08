@@ -30,12 +30,31 @@ function init() {
     // 2. Fallback if no habits exist after migration
     if (!state.habits.length) {
         state.habits = [
-            createHabit('Exercise'),
-            createHabit('Read 10 pages'),
-            createHabit('Drink 2L Water'),
-            createHabit('Meditate'),
-            createHabit('No Sugar')
+            createHabit('Google Cert'),
+            createHabit('Vitamins'),
+            createHabit('Drink a whole Owala'),
+            createHabit('Stretch + Exercise'),
+            createHabit('Listen to audio book (atleast 10 minutes)')
         ];
+        saveData();
+    }
+
+    // 3. SPECIAL: Update defaults if user still has the old default list
+    const oldDefaults = ['Exercise', 'Read 10 pages', 'Drink 2L Water', 'Meditate', 'No Sugar'];
+    const currentNames = state.habits.map(h => h.name);
+
+    // Check if current list matches exactly the old defaults
+    const isOldDefaults = state.habits.length === 5 && oldDefaults.every((val, index) => val === currentNames[index]);
+
+    if (isOldDefaults) {
+        const newDefaults = [
+            'Google Cert',
+            'Vitamins',
+            'Drink a whole Owala',
+            'Stretch + Exercise',
+            'Listen to audio book (atleast 10 minutes)'
+        ];
+        state.habits.forEach((h, i) => h.name = newDefaults[i]);
         saveData();
     }
 
