@@ -47,7 +47,8 @@ body.dark-mode {
 
     /* Primary Accent (Orange for Dark) */
     --accent-primary: #e17055;
-    --progress-full: #e17055;
+    --progress-full: #00cec9;
+    /* Keep cyan for progress bar consistency */
     /* Orange */
 
     --modal-bg: rgba(30, 30, 30, 0.95);
