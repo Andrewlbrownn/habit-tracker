@@ -1,18 +1,48 @@
 :root {
+    /* LIGHT MODE (Default) */
     --bg-color: #ffffff;
     --card-bg: #ffffff;
     --text-color: #2d3436;
     --text-muted: #636e72;
     --border-color: #dfe6e9;
 
+    /* Accents */
     --accent-red: #ff7675;
     --accent-orange: #fdcb6e;
-    --accent-green: #00b894;
+
+    /* Primary Accent (Cyan for Light) */
+    --accent-primary: #00cec9;
+    --progress-full: #00cec9;
+    /* Cyan */
 
     --modal-bg: rgba(255, 255, 255, 0.95);
     --font-main: 'Inter', sans-serif;
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
     --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05);
+
+    /* Button Colors */
+    --btn-hover-bg: #f1f2f6;
+}
+
+body.dark-mode {
+    /* DARK MODE */
+    --bg-color: #000000;
+    --card-bg: #1e1e1e;
+    /* Dark Gray for cards so they stand out on black */
+    --text-color: #dfe6e9;
+    --text-muted: #b2bec3;
+    --border-color: #2d3436;
+
+    /* Primary Accent (Orange for Dark) */
+    --accent-primary: #e17055;
+    --progress-full: #e17055;
+    /* Orange */
+
+    --modal-bg: rgba(30, 30, 30, 0.95);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+    --btn-hover-bg: #2d3436;
 }
 
 * {
