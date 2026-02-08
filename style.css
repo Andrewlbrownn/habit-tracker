@@ -198,7 +198,7 @@ header {
 }
 
 .progress-5 {
-    background-color: var(--accent-green);
+    background-color: var(--progress-full);
 }
 
 /* MODAL */
@@ -286,7 +286,7 @@ header {
 .habit-checkbox {
     width: 20px;
     height: 20px;
-    accent-color: var(--accent-green);
+    accent-color: var(--accent-primary);
     cursor: pointer;
 }
 

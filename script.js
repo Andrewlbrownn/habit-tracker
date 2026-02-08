@@ -12,9 +12,10 @@ const dom = {
     habitModal: document.getElementById('habitModal'),
     habitList: document.getElementById('habitList'),
     modalDate: document.getElementById('modalDate'),
-    dailyNote: document.getElementById('dailyNote'), // Added
+    dailyNote: document.getElementById('dailyNote'),
     closeModalBtn: document.getElementById('closeModal'),
     settingsBtn: document.getElementById('settingsBtn'),
+    themeBtn: document.getElementById('themeBtn'), // Added
     settingsModal: document.getElementById('settingsModal'),
     settingsList: document.getElementById('settingsList'),
     closeSettingsBtn: document.getElementById('closeSettings'),
@@ -24,6 +25,15 @@ const dom = {
 let selectedDateKey = null;
 
 function init() {
+    // 0. THEME SETUP
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        dom.themeBtn.textContent = '☀️';
+    } else {
+        dom.themeBtn.textContent = '🌙';
+    }
+
     // 1. MIGRATION: Check if we need to upgrade from old Data
     migrateData();
 
@@ -190,11 +200,11 @@ function renderMonth(month, totalHabits) {
 
 function getGradientColor(percentage) {
     if (percentage === 0) return 'transparent';
-    if (percentage <= 20) return '#ff7675'; // Red
-    if (percentage <= 40) return '#fdcb6e'; // Orange
-    if (percentage <= 60) return '#feca57'; // Yellow
-    if (percentage <= 80) return '#a3cb38'; // Light Green
-    return '#00b894'; // Green
+    if (percentage <= 20) return 'var(--accent-red)';
+    if (percentage <= 40) return 'var(--accent-orange)';
+    if (percentage <= 60) return '#feca57';
+    if (percentage <= 80) return '#a3cb38';
+    return 'var(--progress-full)'; // Use the theme color (Cyan or Orange)
 }
 
 // --- MODAL LOGIC ---
@@ -349,6 +359,13 @@ function setupEventListeners() {
     dom.settingsBtn.onclick = openSettings;
     dom.closeSettingsBtn.onclick = closeSettings;
     dom.saveSettingsBtn.onclick = saveSettings;
+
+    dom.themeBtn.onclick = () => {
+        document.body.classList.toggle('dark-mode');
+        const isDark = document.body.classList.contains('dark-mode');
+        dom.themeBtn.textContent = isDark ? '☀️' : '🌙';
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    };
 }
 
 init();
