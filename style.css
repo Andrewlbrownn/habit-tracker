@@ -1,0 +1,381 @@
+:root {
+    --bg-color: #ffffff;
+    --card-bg: #ffffff;
+    --text-color: #2d3436;
+    --text-muted: #636e72;
+    --border-color: #dfe6e9;
+
+    --accent-red: #ff7675;
+    --accent-orange: #fdcb6e;
+    --accent-green: #00b894;
+
+    --modal-bg: rgba(255, 255, 255, 0.95);
+    --font-main: 'Inter', sans-serif;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    display: block;
+    padding: 0;
+    overflow-y: auto;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem 4rem 1rem;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1rem;
+}
+
+.app-title {
+    font-weight: 800;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
+
+.icon-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: 0.2s;
+}
+
+.icon-btn:hover {
+    background: white;
+    box-shadow: var(--shadow-sm);
+    color: var(--text-color);
+}
+
+/* WEEKDAYS HEADER (Sticky below header) */
+.weekdays-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    padding: 0.5rem 0;
+    text-align: center;
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    position: sticky;
+    top: 73px;
+    /* Adjust based on header height */
+    background: var(--bg-color);
+    z-index: 90;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+}
+
+/* MONTH BLOCKS */
+.month-block {
+    margin-bottom: 4rem;
+    break-inside: avoid;
+}
+
+.month-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    padding-left: 0.5rem;
+    border-left: 3px solid var(--text-muted);
+}
+
+/* CALENDAR GRID */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+}
+
+.day-cell {
+    background: var(--card-bg);
+    aspect-ratio: 1;
+    border-radius: 8px;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.day-cell.empty {
+    background: transparent;
+    border: none;
+    cursor: default;
+    pointer-events: none;
+}
+
+.day-cell:not(.empty):hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--text-muted);
+}
+
+.day-number {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.day-cell.today {
+    border: 2px solid var(--text-color);
+}
+
+.day-cell.today .day-number {
+    color: var(--text-color);
+}
+
+/* HOLLOW PROGRESS BAR */
+.progress-track {
+    height: 6px;
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: auto;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.4s ease;
+}
+
+/* Progress Colors */
+.progress-0 {
+    background-color: transparent;
+}
+
+.progress-1 {
+    background-color: var(--accent-red);
+}
+
+.progress-2 {
+    background-color: var(--accent-orange);
+}
+
+.progress-3 {
+    background-color: #feca57;
+}
+
+.progress-4 {
+    background-color: #a3cb38;
+}
+
+.progress-5 {
+    background-color: var(--accent-green);
+}
+
+/* MODAL */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+    z-index: 1000;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-content {
+    background: var(--modal-bg);
+    padding: 2rem;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transform: translateY(20px);
+    transition: 0.3s;
+    border: 1px solid var(--border-color);
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: var(--text-color);
+}
+
+/* HABIT LIST */
+.habit-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f1f2f6;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid transparent;
+}
+
+.habit-item:hover {
+    background: white;
+    box-shadow: var(--shadow-sm);
+    border-color: var(--border-color);
+}
+
+.habit-checkbox {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--accent-green);
+    cursor: pointer;
+}
+
+.habit-name {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.daily-note-input {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: #f9f9f9;
+    font-family: var(--font-main);
+    font-size: 0.9rem;
+    color: var(--text-color);
+    resize: vertical;
+    min-height: 80px;
+    transition: 0.2s;
+}
+
+.daily-note-input:focus {
+    outline: none;
+    background: white;
+    border-color: var(--accent-green);
+    box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.1);
+}
+
+/* SETTINGS INPUTS */
+.setting-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    align-items: center;
+}
+
+.setting-input {
+    flex: 1;
+    padding: 0.8rem;
+    background: white;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 6px;
+    font-family: inherit;
+}
+
+.delete-btn {
+    padding: 0.8rem;
+    color: var(--accent-red);
+    border-color: rgba(255, 118, 117, 0.3);
+}
+
+.delete-btn:hover {
+    background: var(--accent-red);
+    color: white;
+    border-color: var(--accent-red);
+}
+
+.add-btn {
+    width: 100%;
+    padding: 0.8rem;
+    margin-top: 0.5rem;
+    border: 2px dashed var(--border-color);
+    background: transparent;
+    color: var(--text-muted);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.add-btn:hover {
+    border-color: var(--accent-green);
+    color: var(--accent-green);
+    background: rgba(0, 184, 148, 0.05);
+}
+
+.save-btn {
+    width: 100%;
+    margin-top: 2rem;
+    padding: 1rem;
+    background: var(--text-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.save-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
