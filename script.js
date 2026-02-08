@@ -29,9 +29,9 @@ function init() {
     const savedTheme = localStorage.getItem('theme') || 'light';
     if (savedTheme === 'dark') {
         document.body.classList.add('dark-mode');
-        dom.themeBtn.textContent = '☀️';
+        dom.themeBtn.textContent = '☼';
     } else {
-        dom.themeBtn.textContent = '🌙';
+        dom.themeBtn.textContent = '☽';
     }
 
     // 1. MIGRATION: Check if we need to upgrade from old Data
@@ -280,7 +280,7 @@ function renderSettingsList() {
         row.className = 'setting-row';
         row.innerHTML = `
             <input type="text" class="setting-input" value="${habit.name}" data-id="${habit.id}">
-            <button class="icon-btn delete-btn" title="Delete Habit">🗑️</button>
+            <button class="icon-btn delete-btn" title="Delete Habit">✕</button>
         `;
 
         // Delete Handler
@@ -363,7 +363,7 @@ function setupEventListeners() {
     dom.themeBtn.onclick = () => {
         document.body.classList.toggle('dark-mode');
         const isDark = document.body.classList.contains('dark-mode');
-        dom.themeBtn.textContent = isDark ? '☀️' : '🌙';
+        dom.themeBtn.textContent = isDark ? '☼' : '☽';
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
     };
 }
