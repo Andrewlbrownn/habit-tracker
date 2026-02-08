@@ -2,9 +2,14 @@
     /* LIGHT MODE (Default) */
     --bg-color: #ffffff;
     --card-bg: #ffffff;
+    --header-bg: rgba(255, 255, 255, 0.95);
     --text-color: #2d3436;
     --text-muted: #636e72;
     --border-color: #dfe6e9;
+
+    /* UI Element Backgrounds */
+    --item-bg: #f1f2f6;
+    --item-hover-bg: #ffffff;
 
     /* Accents */
     --accent-red: #ff7675;
@@ -28,10 +33,17 @@ body.dark-mode {
     /* DARK MODE */
     --bg-color: #000000;
     --card-bg: #1e1e1e;
+    --header-bg: #000000;
+    /* Pure Black */
+
     /* Dark Gray for cards so they stand out on black */
     --text-color: #dfe6e9;
     --text-muted: #b2bec3;
     --border-color: #2d3436;
+
+    /* UI Element Backgrounds */
+    --item-bg: #2d3436;
+    --item-hover-bg: #353b48;
 
     /* Primary Accent (Orange for Dark) */
     --accent-primary: #e17055;
