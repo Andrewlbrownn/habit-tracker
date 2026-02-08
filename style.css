@@ -73,7 +73,7 @@ header {
     align-items: center;
     position: sticky;
     top: 0;
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--header-bg);
     backdrop-filter: blur(10px);
     z-index: 100;
     padding: 1rem 0;
@@ -295,7 +295,7 @@ header {
     align-items: center;
     gap: 1rem;
     padding: 1rem;
-    background: #f1f2f6;
+    background: var(--item-bg);
     margin-bottom: 0.5rem;
     border-radius: 8px;
     cursor: pointer;
@@ -308,7 +308,7 @@ header {
 }
 
 .habit-item:hover {
-    background: white;
+    background: var(--item-hover-bg);
     box-shadow: var(--shadow-sm);
     border-color: var(--border-color);
 }
@@ -331,7 +331,7 @@ header {
     padding: 0.8rem;
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    background: #f9f9f9;
+    background: var(--item-bg);
     font-family: var(--font-main);
     font-size: 0.9rem;
     color: var(--text-color);
@@ -342,8 +342,8 @@ header {
 
 .daily-note-input:focus {
     outline: none;
-    background: white;
-    border-color: var(--accent-green);
+    background: var(--card-bg);
+    border-color: var(--accent-primary);
     box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.1);
 }
 
@@ -358,7 +358,7 @@ header {
 .setting-input {
     flex: 1;
     padding: 0.8rem;
-    background: white;
+    background: var(--card-bg);
     border: 1px solid var(--border-color);
     color: var(--text-color);
     border-radius: 6px;
